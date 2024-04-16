@@ -1,0 +1,5 @@
+Requirements:
+  - First board is absolute minimum: 2 cells, one of which is "alive".
+  - Rules: "alive" cell should switch to "dead" and vice versa.
+  - Generations change every 500ms.
+  - Board is a table element with cells.
