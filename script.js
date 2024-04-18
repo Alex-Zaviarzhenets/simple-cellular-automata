@@ -1,12 +1,8 @@
 function toggleCellState(cellId) {
-  var cell = document.getElementById(cellId);
-  if (cell.classList.contains('alive')) {
-      cell.classList.remove('alive');
-      cell.classList.add('dead');
-  } else {
-      cell.classList.remove('dead');
-      cell.classList.add('alive');
-  }
+  const cell = document.getElementById(cellId);
+  
+  cell.classList.toggle('alive');
+  cell.classList.toggle('dead');
 }
 
 // Функция для переключения состояния клеток каждые 500 миллисекунд
