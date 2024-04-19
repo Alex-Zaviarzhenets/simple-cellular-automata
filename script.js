@@ -6,6 +6,7 @@ setInterval(moveToNextGeneration, 500);
 cell will be "alive" if cell on the left was "alive"
 cell will be "alive" if cell above was "alive" and there's no cell on the right,
 cell will be "alive" if cell on the right was "alive" and there's no cell below,
+cell will be "alive" if cell below was "alive" and there's no cell on the left.
 */
 function moveToNextGeneration() {
   const currentGrid = board.tBodies[0];
@@ -20,7 +21,8 @@ function moveToNextGeneration() {
     for (let j = 0; j < row.cells.length; j++) {
       const alive = row.cells[j - 1]?.classList.contains('alive') ||
       prevRow?.cells[j]?.classList.contains('alive') && !row.cells[j + 1] ||
-      row.cells[j + 1]?.classList.contains('alive') && !nextRow;
+      row.cells[j + 1]?.classList.contains('alive') && !nextRow ||
+      nextRow?.cells[j]?.classList.contains('alive') && !row.cells[j - 1];
       
       newRow.cells[j].classList.toggle('alive', !!alive);
     }
