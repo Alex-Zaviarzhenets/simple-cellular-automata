@@ -3,15 +3,12 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-
 }
-
 td {
   width: 50px;
   height: 50px;
   border: 1px solid black;
 }
-
 .alive {
   background-color: orange;
 }
