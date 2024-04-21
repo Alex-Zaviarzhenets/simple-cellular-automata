@@ -19,8 +19,14 @@ function updateNextGeneration() {
     for (let j = 0; j < colCount - 1; j++) {
       const currentCell = row.cells[j];
       const leftCell = row.cells[j - 1];
+      const aboveCell = i > 0 ? tableBody.rows[i - 1].cells[j] : null;
+      const rightCell = row.cells[j + 1];
+      const belowCell = i < rowCount - 1 ? tableBody.rows[i + 1].cells[j] : null; 
       const newCell = newTableBody.rows[i].cells[j];
-      if (leftCell?.classList.contains('alive')) {
+
+      if ((leftCell && leftCell.classList.contains('alive')) ||
+        (aboveCell && aboveCell.classList.contains('alive') && !leftCell) ||
+        (rightCell && rightCell.classList.contains('alive')) && !belowCell) {
         newCell.classList.add('alive');
       } else {
         newCell.classList.remove('alive');
@@ -28,16 +34,7 @@ function updateNextGeneration() {
     }
   }
 
-  for (let i = 0; i < rowCount; i++) {
-    const row = tableBody.rows[i];
-    const aboveCell = i > 0 ? tableBody.rows[i - 1].cells[colCount - 1] : null;
-    const rightCell = row.cells[colCount];
-    const newCell = newTableBody.rows[i].cells[colCount - 1];
-    if (aboveCell && aboveCell.classList.contains('alive') && !rightCell) {
-      newCell.classList.add('alive');
-    }
-    newCell.classList.remove('alive');
-  }
+  
 
   tableBody.replaceWith(newTableBody);
 }
